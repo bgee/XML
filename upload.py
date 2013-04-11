@@ -13,7 +13,7 @@ if repo.is_dirty():
     print "directory is dirty"
     repo.git.add('.')
     commit = index.commit("another commit")
-    print repo.untracked_files
+    time.sleep(10)
 try:
     while True:
         u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
