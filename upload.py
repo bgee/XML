@@ -28,6 +28,7 @@ def main():
         index.add([diff.a_blob.name for diff in index.diff(None)])
         commit = index.commit("another commit")
         origin = repo.remotes.origin
+        origin.push()
         exit(0)
         sleep_bar(10)
     try:
