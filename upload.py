@@ -17,11 +17,7 @@ def sleep_bar(second):
 
 def main():
     
-    fname = 'ncaa'
-    postfix = '.xml'
-    dir = os.path.dirname(os.path.abspath(__file__))
-    repo = Repo(dir)
-    index = repo.index
+    
     
     try:
         while True:
@@ -56,4 +52,9 @@ def main():
 
 
 if __name__ == "__main__":
+    fname = 'ncaa'
+    postfix = '.xml'
+    dir = os.path.dirname(os.path.abspath(__file__))
+    repo = Repo(dir)
+    index = repo.index
     main()
