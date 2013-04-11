@@ -17,6 +17,7 @@ def sleep_bar(second):
 def update_repo():
     
     flag = repo.is_dirty()
+    print flag
     if flag:
         print "updating new file to git repo"
         index.add([diff.a_blob.name for diff in index.diff(None)])
