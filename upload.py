@@ -14,6 +14,9 @@ def sleep_bar(second):
         pbar.update(i+1)
     pbar.finish()
 
+def intialize():
+    pass
+
 
 def main():
     
@@ -38,7 +41,7 @@ def main():
        
                 index.add([diff.a_blob.name for diff in index.diff(None)])
                 commit = index.commit("another commit")
-                origin = repo.remotes.origin
+               
                 origin.push()
                 
                 sleep_bar(10)
@@ -52,9 +55,11 @@ def main():
 
 
 if __name__ == "__main__":
+
     fname = 'ncaa'
     postfix = '.xml'
     dir = os.path.dirname(os.path.abspath(__file__))
     repo = Repo(dir)
     index = repo.index
+    origin = repo.remotes.origin
     main()
