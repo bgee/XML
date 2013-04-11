@@ -22,38 +22,34 @@ def main():
     dir = os.path.dirname(os.path.abspath(__file__))
     repo = Repo(dir)
     index = repo.index
-    if repo.is_dirty():
-        print "directory is dirty"
-        ##index.add()
-        index.add([diff.a_blob.name for diff in index.diff(None)])
-        commit = index.commit("another commit")
-        origin = repo.remotes.origin
-        origin.master.push()
-        exit(0)
-        sleep_bar(10)
+    
     try:
         while True:
             u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
             
-            localFile = open(fname+'_New'+postfix, 'w')
+            localFile = open(fname+postfix, 'w')
             
             localFile.write(u.read())
             
             localFile.close()
             
-            if not filecmp.cmp('ncaa.xml', 'ncaa_New.xml'):
+            '''if not filecmp.cmp('ncaa.xml', 'ncaa_New.xml'):
                 print "diff file, rename..."
                 os.rename('ncaa_New.xml', 'ncaa.xml')
-                print "finish"
+                print "finish"'''
+            if repo.is_dirty():
+                print "updating new file to git repo"
+       
+                index.add([diff.a_blob.name for diff in index.diff(None)])
+                commit = index.commit("another commit")
+                origin = repo.remotes.origin
+                origin.push()
                 
+                sleep_bar(10)
                     
             else:
                 sleep_bar(5)
-            #pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval = 500).start()
-            #for i in range(500):
-            #    time.sleep(0.01)
-            #    pbar.update(i+1)
-            #pbar.finish()
+            
                     
     except KeyboardInterrupt:
         print "finish uploading"
