@@ -69,5 +69,5 @@ if __name__ == "__main__":
     index = repo.index
     origin = repo.remotes.origin
     # check current for any uncommited/unpushed file
-    #update_repo()
+    update_repo()
     main()
