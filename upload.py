@@ -14,9 +14,15 @@ def sleep_bar(second):
         pbar.update(i+1)
     pbar.finish()
 
-def intialize():
-    pass
-
+def update_repo():
+    
+    flag = repo.is_dirty()
+    if flag:
+        print "updating new file to git repo"
+        index.add([diff.a_blob.name for diff in index.diff(None)])
+        commit = index.commit("another commit")
+        origin.push()
+    return flag
 
 def main():
     
@@ -25,25 +31,11 @@ def main():
     try:
         while True:
             u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
-            
             localFile = open(fname+postfix, 'w')
-            
             localFile.write(u.read())
-            
             localFile.close()
-            
-            '''if not filecmp.cmp('ncaa.xml', 'ncaa_New.xml'):
-                print "diff file, rename..."
-                os.rename('ncaa_New.xml', 'ncaa.xml')
-                print "finish'''
-            if repo.is_dirty():
-                print "updating new file to git repo"
-       
-                index.add([diff.a_blob.name for diff in index.diff(None)])
-                commit = index.commit("another commit")
-               
-                origin.push()
-                
+                      
+            if update_repo():
                 sleep_bar(10)
                     
             else:
