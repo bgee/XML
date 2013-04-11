@@ -30,13 +30,26 @@ def main():
     
     try:
         while True:
-            u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
+            '''u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
             localFile = open(fname+postfix, 'w')
             localFile.write(u.read())
             localFile.close()
                       
             if update_repo():
-                sleep_bar(10)
+                sleep_bar(10)'''
+            u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
+            
+            localFile = open(fname+'_New'+postfix, 'w')
+            
+            localFile.write(u.read())
+            
+            localFile.close()
+            
+            if not filecmp.cmp('ncaa.xml', 'ncaa_New.xml'):
+                print "diff file, rename..."
+                os.rename('ncaa_New.xml', 'ncaa.xml')
+                update_repo()
+                print "finish"
                     
             else:
                 sleep_bar(5)
