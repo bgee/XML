@@ -24,7 +24,7 @@ def main():
     index = repo.index
     if repo.is_dirty():
         print "directory is dirty"
-        #index.add()
+        ##index.add()
         index.add([diff.a_blob.name for diff in index.diff(None)])
         commit = index.commit("another commit")
         origin = repo.remotes.origin
