@@ -24,10 +24,11 @@ def main():
     index = repo.index
     if repo.is_dirty():
         print "directory is dirty"
-        repo.git.add('.')
+        #index.add()
+        index.add([diff.a_blob.name for diff in index.diff(None)])
         commit = index.commit("another commit")
         origin = repo.remotes.origin
-        print origin.push()
+        exit(0)
         sleep_bar(10)
     try:
         while True:
