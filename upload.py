@@ -27,7 +27,7 @@ def main():
         repo.git.add('.')
         commit = index.commit("another commit")
         origin = repo.remotes.origin
-        origin.push()
+        print origin.push()
         sleep_bar(10)
     try:
         while True:
