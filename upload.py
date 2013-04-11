@@ -26,7 +26,7 @@ def main():
         print "directory is dirty"
         repo.git.add('.')
         commit = index.commit("another commit")
-        time.sleep(10)
+        sleep_bar(10)
     try:
         while True:
             u = urllib2.urlopen('http://www.ncaa.com/newsrss/')
@@ -44,7 +44,6 @@ def main():
                 
                     
             else:
-                print "wait for 5 seconds"
                 sleep_bar(5)
             #pbar = ProgressBar(widgets=[Percentage(), Bar()], maxval = 500).start()
             #for i in range(500):
