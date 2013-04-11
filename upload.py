@@ -26,7 +26,8 @@ def main():
         print "directory is dirty"
         repo.git.add('.')
         commit = index.commit("another commit")
-        push = index.push("origin/master")
+        origin = repo.remotes.origin
+        origin.push()
         sleep_bar(10)
     try:
         while True:
