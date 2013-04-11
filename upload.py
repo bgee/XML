@@ -36,7 +36,7 @@ def main():
             '''if not filecmp.cmp('ncaa.xml', 'ncaa_New.xml'):
                 print "diff file, rename..."
                 os.rename('ncaa_New.xml', 'ncaa.xml')
-                print "finish"'''
+                print "finish'''
             if repo.is_dirty():
                 print "updating new file to git repo"
        
